@@ -26,7 +26,7 @@ validate.erl:
          {regexp, [<<"bcde">>,<<"cd">>]}
        ]
        ).
-    > {match,{1,4}}
+    > ok
     
     > validate:main(12,[
           {value_range, {0,100}}
@@ -38,5 +38,5 @@ validate.erl:
          {regexp, "(\\d{1,3}\\.){3}\\d{1,3}"}
        ]
        ).
-    > {match,["192.168.1.241"]}
+    > ok
 
