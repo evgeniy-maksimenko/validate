@@ -3,7 +3,7 @@
 %%
 %% Source = [1,2,3,4]
 %% Source = 123
-%% Source = "http://192.168.1.241/mod/fun?arg"
+%% Source = "test@gmail.com"
 %% Source = <<"abcde">>
 %%
 %% Rules =
@@ -13,15 +13,14 @@
 %% {bit_size, 32},
 %% {bit_size_range, {8, 40}},
 %% {value_range, {0,100}},
-%% {regexp, "(\\d{1,3}\\.){3}\\d{1,3}"},
+%% {regexp, "^([\\w\\.-]+)@([\\w\\.-]+)$"},
 %% {regexp, [<<"bcde">>,<<"cd">>]}
 %% ]
 
 -module(validate_wrapper).
 
 -export([start/2]).
-
 -spec start(Source::binary() | list() | integer() | float(), Rules::list()) ->
-  {match, Regexp::tuple()} | {error, Type::atom()} | ok | {match , {Key::integer(),Val::integer()}}.
+  {error, Type::atom()} | ok .
 start(Source, Rules) ->
   validate:main(Source, Rules).

@@ -2,7 +2,7 @@
 -include_lib("eunit/include/eunit.hrl").
 
 main_test() ->
-  {error,{wrong_format,datatype}} = validate:main([1,2,3,4],[
+  {error,bit_size} = validate:main([1,2,3,4],[
     {length, 4},
     {length_range, {0,5}},
     {bit_size, 32},
@@ -55,7 +55,7 @@ main_test() ->
     {regexp, [<<"bcde">>,<<"cd">>]}
   ]
   ),
-  {match,{1,4}} = validate:main(<<"abcde">>,[
+  ok = validate:main(<<"abcde">>,[
     {regexp, [<<"bcde">>,<<"cd">>]}
   ]
   ),
@@ -74,7 +74,7 @@ main_test() ->
     {value_range, {0,100}}
   ]
   ),
-  {match,["192.168.1.241"]} = validate:main("http://192.168.1.241/mod/fun?arg",[
+  ok = validate:main("http://192.168.1.241/mod/fun?arg",[
     {regexp, "(\\d{1,3}\\.){3}\\d{1,3}"}
   ]
   ).
