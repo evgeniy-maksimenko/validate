@@ -20,17 +20,17 @@
 -module(validate_wrapper).
 -export([start/2]).
 
--type source()    :: proplists().
--type proplists() :: [kvtuple()].
--type kvtuple()   :: {key(), value()}.
--type key()       :: binary().
--type value()     :: binary().
+-type source()          :: proplists().
+-type proplists()       :: [kvtuple()].
+-type kvtuple()         :: {key(), value()}.
+-type key()             :: binary().
+-type value()           :: binary().
 
--type rules()     :: ruleslist().
--type ruleslist() :: [pvtuple()].
--type pvtuple()   :: {property(), amount()}.
--type property()  :: length | length_range | bit_size | bit_size_range | value_range | regexp.
--type amount()    :: binary() | list() | integer() | float().
+-type rules()           :: ruleslist().
+-type ruleslist()       :: [pvtuple()].
+-type pvtuple()         :: {property(), amount()}.
+-type property()        :: length | length_range | bit_size | bit_size_range | value_range | regexp.
+-type amount()          :: binary() | list() | integer() | float().
 
 -type error()           :: errortuple_kv() | ok.
 -type errortuple_kv()   :: {error, property() | kv_error_tuple()}.

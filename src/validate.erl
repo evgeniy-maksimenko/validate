@@ -13,26 +13,26 @@
 -module(validate).
 -export([main/2, start/2, check_rule/4, check_source/2]).
 
--type source()    :: proplists().
--type proplists() :: [kvtuple()].
--type kvtuple()   :: {key(), value()}.
--type key()       :: binary().
--type value()     :: binary().
+-type source()              :: proplists().
+-type proplists()           :: [kvtuple()].
+-type kvtuple()             :: {key(), value()}.
+-type key()                 :: binary().
+-type value()               :: binary().
 
--type rules()     :: ruleslist().
--type ruleslist() :: [pvtuple()].
--type pvtuple()   :: {property(), amount()}.
--type property()  :: length | length_range | bit_size | bit_size_range | value_range | regexp.
--type amount()    :: binary() | list() | integer() | float().
+-type rules()               :: ruleslist().
+-type ruleslist()           :: [pvtuple()].
+-type pvtuple()             :: {property(), amount()}.
+-type property()            :: length | length_range | bit_size | bit_size_range | value_range | regexp.
+-type amount()              :: binary() | list() | integer() | float().
 
--type error()           :: errortuple_kv() | ok.
--type errortuple_kv()   :: {error, property() | kv_error_tuple()}.
--type kv_error_tuple()  :: {key_error(), value_error()}.
--type key_error()       :: wrong_format.
--type value_error()     :: datatype.
+-type error()               :: errortuple_kv() | ok.
+-type errortuple_kv()       :: {error, property() | kv_error_tuple()}.
+-type kv_error_tuple()      :: {key_error(), value_error()}.
+-type key_error()           :: wrong_format.
+-type value_error()         :: datatype.
 
--type error_kv()        :: errortuple() | ok.
--type errortuple()      :: {error, property()}.
+-type error_kv()            :: errortuple() | ok.
+-type errortuple()          :: {error, property()}.
 
 -type data()                :: list() | integer() | tuple().
 
@@ -53,9 +53,9 @@ start(Source, Rules) ->
     List = [ check_rule(Type, Type, Data, Source) || {Type, Data}<-Rules ],
     isset_error(
       lists:keymember(error,?LISTS_KEY_NUMBER,List),
-      lists:keyfind(error,?LISTS_KEY_NUMBER,List),
+      lists:keyfind(error,  ?LISTS_KEY_NUMBER,List),
       lists:keymember(match,?LISTS_KEY_NUMBER,List),
-      lists:keyfind(match,?LISTS_KEY_NUMBER,List))
+      lists:keyfind(match,  ?LISTS_KEY_NUMBER,List))
   catch
     _ : _Reason -> {error, {wrong_format,datatype}}
   end.
