@@ -41,6 +41,8 @@
 -type ck_source_key()       :: match | integer().
 -type ck_source_value()     :: property() | integer() | tuple().
 
+-define(LISTS_KEY_NUMBER, 1).
+
 -spec main(Source::source(), Rules::rules()) -> error().
 main(Source,Rules) ->
   start(Source, Rules).
@@ -50,10 +52,10 @@ start(Source, Rules) ->
   try
     List = [ check_rule(Type, Type, Data, Source) || {Type, Data}<-Rules ],
     isset_error(
-      lists:keymember(error,1,List),
-      lists:keyfind(error,1,List),
-      lists:keymember(match,1,List),
-      lists:keyfind(match,1,List))
+      lists:keymember(error,?LISTS_KEY_NUMBER,List),
+      lists:keyfind(error,?LISTS_KEY_NUMBER,List),
+      lists:keymember(match,?LISTS_KEY_NUMBER,List),
+      lists:keyfind(match,?LISTS_KEY_NUMBER,List))
   catch
     _ : _Reason -> {error, {wrong_format,datatype}}
   end.
