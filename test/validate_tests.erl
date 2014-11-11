@@ -2,7 +2,7 @@
 -include_lib("eunit/include/eunit.hrl").
 
 main_test() ->
-  {error,wrong_format,function_clause} = validate:main([1,2,3,4],[
+  {error,wrong_format} = validate:main([1,2,3,4],[
     {length, 4},
     {length_range, {0,5}},
     {bit_size, 32},
