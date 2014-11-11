@@ -29,7 +29,7 @@ start(Source, Rules) ->
       lists:keymember(match,1,List),
       lists:keyfind(match,1,List))
   catch
-    _ : _Reason -> {error, wrong_format}
+    _ : _Reason -> {error, {wrong_format,datatype}}
   end.
 
 -spec isset_error(boolean(), atom(), boolean(), list()) -> atom() | list() | ok.
